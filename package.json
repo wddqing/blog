@@ -1,0 +1,9 @@
+{
+	"name":"blog",
+	"version":"0.0.1",
+	"description":"a personal blog",
+	"maintainers":[{"name":"wddqing","email":"wddqing@gmail.com"}],
+	"contributors":[{"name":"wddqing","email":"wddqing@gmail.com"}],
+	"bugs":"wddqing@gmail.com",
+	
+}
