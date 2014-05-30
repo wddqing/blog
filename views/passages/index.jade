@@ -1,6 +1,18 @@
 extend ../layout/layout
 
 block content
-	.row
-		.col-md-3.col-md-offset-6
-			p hello 
+	.container
+		.row
+			.col-md-4
+				form.form-horizontal(role="form")
+					.form-group
+						label(for="email").control-label.col-sm-2 Email
+						.col-sm-10
+							.input-group
+								span.input-group-addon @
+								input(type="email",placeholder="Enter Email").form-control#email
+					.form-group
+						.col-sm-10.col-sm-offset-2
+							button.btn.btn-default(type="button")
+								span.glyphicon.glyphicon-open
+								span star
