@@ -7,6 +7,7 @@ var express = require("express");
 var config = require("config");
 var wrench = require("wrench");
 var path = require("path");
+var global = require('./boot/global.js');
 
 function Server(){
 	//初始化所有路径和配置参数
@@ -61,23 +62,21 @@ Server.prototype.createHttpServer = function(){
 					app[method](p,function(req,res,next){
 						funcs[p](req,res,next);
 					});
-					console.log('server init [%s]: %s', method, p);
+					console.log('server init route [%s]: %s', method, p);
 				})(path,apiFuncs);
 			}
-
 		});
 	});
 
 	return app;
 }
 
-
+global.init();//全局初始化
 
 var server = new Server();
 
 server.start(function(){
-	console.log("server start.");
-
+	log("server start.");
 });
 
 
