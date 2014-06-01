@@ -10,9 +10,11 @@ module.exports = {
 	},
 	"global" : {
 		//init中配置在全局初始化的模块，这些模块可以在全局中使用，模块存放于boot文件夹
-		"init" : ["use","log"],
+		"init" : ["log","use"],
+		//run中配置默认运行的模块
+		"run":["load"],
 		//use 模块会自动导入的文件夹
-		"use" : ["model"]
+		"loads" : ["model"]
 	}
 
 }

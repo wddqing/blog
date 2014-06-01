@@ -18,7 +18,6 @@ function Server(){
 	this.publicPath = path.dirname(__dirname) + "/blog/public";
 	this.modelPath  = path.dirname(__dirname) + "/blog/model";
 	this.configPaht = path.dirname(__dirname) + "/blog/config"; 
-	console.log(this.viewsPath);
 } 
 
 Server.prototype.start = function(done){
@@ -48,7 +47,7 @@ Server.prototype.createHttpServer = function(){
 		try{
 			var api = require(self.routesPath + "/" + file);
 		}catch(e){
-			console.log(e);
+			log(e);
 		}
 		var methods = config.dev.methods;
 
@@ -72,6 +71,7 @@ Server.prototype.createHttpServer = function(){
 }
 
 global.init();//全局初始化
+use("hello0");
 
 var server = new Server();
 
