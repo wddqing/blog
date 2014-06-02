@@ -14,7 +14,7 @@ module.exports = {
 		//run中配置默认运行的模块
 		"run":["load"],
 		//use 模块会自动导入的文件夹
-		"loads" : ["model"]
+		"loads" : ["model","storage"]
 	}
 
 }

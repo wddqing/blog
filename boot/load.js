@@ -15,10 +15,10 @@ module.exports = {
 				var files = wrench.readdirSyncRecursive(currentDirectory + "/" + directory);
 				files.forEach(function(file){
 					if(file.lastIndexOf(".js") == -1) return -1;
-					myModules.push(file.slice(0,file.length-3));//取得模块名
+					myModules.push({name:file.slice(0,file.length-3),locate:currentDirectory + "/" + directory + "/" + file});//取得模块名
 				});
 			}catch(e){
-				log(e);
+				console.log(e);
 				return -1;
 			}
 		});

@@ -71,7 +71,7 @@ Server.prototype.createHttpServer = function(){
 }
 
 global.init();//全局初始化
-use("hello0");
+
 
 var server = new Server();
 
