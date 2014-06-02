@@ -10,6 +10,8 @@ module.exports = function use(myModule){
 		});
 		if(goalModule){
 			return require(goalModule.locate);
+		}else{
+			return  null;
 		}
 	}else{
 		log("parameter must be a string not a " + typeof myModule);
