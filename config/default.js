@@ -16,5 +16,13 @@ module.exports = {
 		//use 模块会自动导入的文件夹
 		"loads" : ["model","storage"]
 	}
+	"storage":{
+		"mysql":{
+			"host":"127.0.0.1",
+			"port":3306,
+			'user':"root",
+			"pass":"wddqing123"
+		}
+	}
 
 }
