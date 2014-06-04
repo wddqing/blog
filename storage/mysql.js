@@ -1,15 +1,22 @@
 //管理mysql操作
 var config = require("config").storage.mysql;
+var mysql = require("mysql");
+var conf = {};
 module.exports = function mysql(option){
 	if(option){
-		this.host = option.host;
-		this.port = option.port;
-		this.user = option.user;
-		this.pass = option.pass;
+		conf.host 		= option.host;
+		conf.port 		= option.port;
+		conf.user 		= option.user;
+		conf.password 	= option.pass;
 	}else{
-		this.host = config.host;
-		this.port = config.port;
-		this.user = config.user;
-		this.pass = config.pass;
+		conf.host 		= config.host;
+		conf.port 		= config.port;
+		conf.user 		= config.user;
+		conf.password 	= config.pass;
 	}
+}
+
+mysql.prototype.getConnection(){
+	var connection = mysql.createConnection(conf);
+	return connection.connect();
 }
