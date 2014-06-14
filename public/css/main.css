@@ -1,1 +1,10 @@
 body { padding-top: 70px; }
+
+.content{
+	text-indent: 2em;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.footer{
+	margin-top: 50px;
+}

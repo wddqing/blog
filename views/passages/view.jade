@@ -1,0 +1,28 @@
+extend ../layout/layout
+block content
+	.container
+		.row
+			.col-md-8.col-md-offset-2
+				.row
+					.col-md-12
+						h3=passage.title
+				hr
+				.row
+					.col-md-6.text-left
+						p
+							span 作者：
+							span=passage.author
+					.col-md-6.text-right
+						p
+							span 标签：
+							span=passage.tags
+				.row
+					.col-md-12.content
+						p=passage.content
+				hr
+				.row
+					.col-md-12
+						p.text-right
+							span 发布时间：
+							span=passage.modify_time
+

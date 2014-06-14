@@ -2,36 +2,28 @@
 * 	文章模型
 */
 var mysql = use("mysql");
-var table = "blog_passage";
-module.exports = function passage(){
-	this.id = "";
-	this.title = "";
-	this.author = "";
-	this.content = "";
-	this.updateTime = "";
-	this.order = 0;//排序
-}
+var table = "passage";
+var Sequelize = require("sequelize");
 
-passage.prototype.save = function(){
 
-}
+var Passage = mysql.define(
+	"Passage",
+	{
+		id:{type : Sequelize.INTEGER, autoIncrement : true, primaryKey : true, unique : true},
+		title:{type : Sequelize.STRING},
+		author:{type : Sequelize.STRING},
+		content:{type : Sequelize.STRING},
+		tags:{type : Sequelize.STRING},
+		original:{type : Sequelize.INTEGER},
+		modify_time:{type : Sequelize.DATE,defaultValue : Sequelize.NOW},
+	},
+	{
+		tableName:table,
+		timestamps:false
+	}
+);
 
-passage.prototype.del = function(){
-	
-}
 
-passage.prototype.modify = function(){
-	
-}
-//根据文章id获取一篇文章
-passage.prototype.find = function(id){
-	mysql.query()
-}
-//根据页数获取文章列表
-passage.prototype.list = function(page,pagesize){
-	
-}
-//返回文章总数
-passage.prototype.count= function(){
-	
-}
+
+
+module.exports = Passage;

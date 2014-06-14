@@ -38,7 +38,6 @@ Server.prototype.createHttpServer = function(){
 	app.use(express.bodyParser());
 	app.use(app.router);
 	app.use(express.static(this.publicPath));
-
 	var files = wrench.readdirSyncRecursive(this.routesPath);
 	//读取路由规则
 	files.forEach(function(file){

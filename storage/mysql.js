@@ -1,22 +1,22 @@
-//管理mysql操作
+//管理mysql连接和操作
 var config = require("config").storage.mysql;
-var mysql = require("mysql");
-var conf = {};
-module.exports = function mysql(option){
-	if(option){
-		conf.host 		= option.host;
-		conf.port 		= option.port;
-		conf.user 		= option.user;
-		conf.password 	= option.pass;
+var Sequelize = require("sequelize");
+var sequelize = new  Sequelize(
+		config.db_name,
+		config.user,
+		config.password,
+		{
+			dialect:"mysql",
+			port:config.port,
+			host:config.host
+		}
+);
+sequelize.authenticate().complete(function(err){
+	if(err){
+		console.log("unable connect to mysql ",err);
 	}else{
-		conf.host 		= config.host;
-		conf.port 		= config.port;
-		conf.user 		= config.user;
-		conf.password 	= config.pass;
+		console.log("connection has been established successfully");
 	}
-}
+});
 
-mysql.prototype.getConnection(){
-	var connection = mysql.createConnection(conf);
-	return connection.connect();
-}
+module.exports = sequelize;
