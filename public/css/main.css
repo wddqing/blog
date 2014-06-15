@@ -8,3 +8,8 @@ body { padding-top: 70px; }
 .footer{
 	margin-top: 50px;
 }
+
+#editor {
+	/*overflow:scroll; */
+	/*max-height:300px;*/
+}

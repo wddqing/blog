@@ -30,9 +30,12 @@ module.exports = {
 
 		},
 		"/admin/add":function(req,res,next){
-
+			res.render("admin/add",{title:"添加文章"});
 		},
 		"/admin/del":function(req,res,next){
+
+		},
+		"/admin/save":function(req,res,next){
 
 		}
 	},
