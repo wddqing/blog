@@ -8,8 +8,11 @@ body { padding-top: 70px; }
 .footer{
 	margin-top: 50px;
 }
+.notice{
+	padding-top: 65px;
+}
 
-#editor {
-	/*overflow:scroll; */
-	/*max-height:300px;*/
+.notice_content{
+	min-height: 300px;
+	text-indent: 2em;
 }

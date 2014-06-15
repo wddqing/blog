@@ -1,0 +1,27 @@
+extend ../../layout/layout
+
+block content
+	.container.notice
+		.col-md-6.col-md-offset-3
+			filedset
+				legend.text-center=notice.title
+				pre.notice_content.text-left
+					p=notice.content
+					p
+						span#timeCount=(notice.waiting/1000)
+						span 秒后跳转到对应的页面
+
+	script.
+		$(document).ready(function(){
+			
+			setInterval(function(){
+				var time = parseInt($("#timeCount").text(),10);
+				console.log($("#timeCount").text());
+				time = time - 1;
+
+				$("#timeCount").text(time.toString());
+			},1000);
+			setTimeout(function(){
+				window.location.href = "#{notice.url}";
+			},#{notice.waiting})
+		});

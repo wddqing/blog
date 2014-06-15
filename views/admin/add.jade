@@ -1,10 +1,38 @@
 extend ../layout/admin
 block css
-	link(rel="stylesheet",href="/css/prettify.css")
+	link(rel="stylesheet",href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css")
+	link(rel="stylesheet",href="/css/summernote.css")
+	link(rel="stylesheet",href="/css/summernote-bs3.css")
 block script
-	script(src="/js/jquery.hotkeys.js")
-	script(src="/js/prettify.js")
-	script(src="/js/bootstrap-wysiwyg.js")
-
+	script(type="text/javascript",src="/js/summernote.min.js")
+	
 block content
+	.container
+		.row
+			.col-md-8.col-md-offset-2
+				h3 添加文章
+				hr
+
+		.row
+			.col-md-8.col-md-offset-2
+				form(role="form",action="/admin/save",method="post")
+					.form-group
+						label(for="title") 文章标题
+						input#title.form-control(type="text",name="title",placeholder="文章标题")
+					.form-group
+						label(for="tags") 文章标签
+						input#tags.form-control(typt="text",name="tags",placeholder="各个标签用空格分开")
+					.form-group
+						label(for="content") 文章内容
+						textarea.form-control#summernote(name="content")
+					.text-right
+						input.btn.btn-default(type="submit",value="保存")
+
+	script.
+		$(document).ready(function() {
+			$('#summernote').summernote({
+				height:300,
+				minHeight: 100, 
+			});
+		});
 	

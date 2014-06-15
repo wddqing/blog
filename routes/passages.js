@@ -4,12 +4,13 @@ module.exports = {
 	"get":{
 		"/":function(req,res,next){
 			var currentPage = req.query.page || 1;
-			var pageSize = 1;
+			var pageSize = 10;
 			var Passage = use("passage");
 			var offset = (currentPage - 1) * pageSize;
 			Passage.findAndCountAll({
 				limit:pageSize,
-				offset:offset
+				offset:offset,
+				order:[['modify_time','DESC']]
 			}).complete(function(err,results){
 				if(err){
 					console.log(err);
