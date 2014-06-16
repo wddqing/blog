@@ -4,6 +4,10 @@ body { padding-top: 70px; }
 	text-indent: 2em;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	min-height: 250px;
+}
+.table-list{
+	margin-top: 30px;
 }
 .footer{
 	margin-top: 50px;

@@ -23,12 +23,26 @@ module.exports = {
 					currentPage:currentPage,
 					totalPages:Math.ceil(results.count/pageSize)
 				}
-				res.render("admin/index",{passages:results.rows,title:"后台管理",pages:pages});
-				
+				var passages = results.rows;
+				res.render("admin/index",{passages:passages,title:"后台管理",pages:pages});
 			});
 		},
 		"/admin/edit":function(req,res,next){
-
+			var id = parseInt(req.query.id,10);
+			var Passage = use("passage");
+			Passage.find({where:{id:id}}).complete(function(err,passage){
+				if(err){
+					console.log(err);
+					res.send("Sorry,something wrong happen");
+				}
+				if(passage){
+					//console.log(passage.content);
+					res.render("admin/edit",{passage:passage,title:passage.title});	
+				}else{
+					res.send("Sorry,something wrong happen");	
+				}
+				
+			});
 		},
 		"/admin/add":function(req,res,next){
 			res.render("admin/add",{title:"添加文章"});
@@ -51,23 +65,50 @@ module.exports = {
 			var modify_time = moment().format("YYYY-MM-DD HH:mm:ss").toString();
 			var original = 1;
 			var Passage = use("passage");
-			var passage = Passage.build({
-				title:title,
-				tags:tags,
-				content:content,
-				author:"wddqing",
-				modify_time:modify_time,
-				original:original
-			});
-			passage.save().success(function(){
-				log("successful add a passage");
-				notice({
-					title:"ceshi",
-					res:res
+			var id = req.body.id || null;
+			var passage = null;
+			if(id){
+				Passage.find({where:{id:id}}).complete(function(err,result){
+					if(err) log(err);
+					if(result){
+						passage = result;
+						console.log(passage);
+					}else{
+						notice({
+							res:res,
+							content:"无法保存",
+							url:"/admin/"
+						});
+						return ;
+					}
+					
 				});
-			}).error(function(){
-				log("failed to add a passage");
-			});
+			}else{
+				passage = Passage.build({
+					title:title,
+					tags:tags,
+					content:content,
+					author:"wddqing",
+					modify_time:modify_time,
+					original:original
+				});	
+			}
+			
+			// passage.save().success(function(){
+			// 	log("successful add a passage");
+			// 	notice({
+			// 		content:"保存成功",
+			// 		res:res,
+			// 		url:"/admin/"
+			// 	});
+			// }).error(function(){
+			// 	log("failed to add a passage");
+			// 	notice({
+			// 		content:"保存失败",
+			// 		res:res,
+			// 		url:"/admin/"
+			// 	});
+			// });
 		}
 	}
 };

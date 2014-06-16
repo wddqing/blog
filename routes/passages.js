@@ -19,12 +19,12 @@ module.exports = {
 				var _ =require("underscore");
 				var allPages = _.range(1,results.count/pageSize+1);
 				var pages = {
-					url:"/admin/",
+					url:"/",
 					allPages:allPages,
 					currentPage:currentPage,
 					totalPages:Math.ceil(results.count/pageSize)
 				}
-				res.render("admin/index",{passages:results.rows,title:"Wddqing的网络日志",pages:pages});
+				res.render("passages/index",{passages:results.rows,title:"Wddqing的网络日志",pages:pages});
 				
 			});
 			
@@ -38,6 +38,7 @@ module.exports = {
 					res.send("Sorry,something wrong happen");
 				}
 				if(passage){
+					//console.log(passage.content);
 					res.render("passages/view",{passage:passage,title:passage.title});	
 				}else{
 					res.send("Sorry,something wrong happen");	

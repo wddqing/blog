@@ -4,24 +4,26 @@ block content
 	.container
 		.row
 			.col-md-8.col-md-offset-2
-				each passage in passages
-					h3
-						a(href="/view?id=#{passage.id}")=passage.title
-					hr
-					.row
-						.col-md-6.text-left
-							p
-								span 作者：
-								span=passage.author
-						.col-md-6.text-right
-							p
-								span 标签：
-								span=passage.tags
-					.row
-						.col-md-12
-							p.text-right
-								span 发布时间：
-								span=passage.modify_time
+				table.table.table-striped.table-list
+					tr
+						th 编号
+						th 标题
+						th 作者
+						th 标签
+						th 发布时间
+						th 操作
+					each passage in passages
+						tr
+							td=passage.id
+							td=passage.title
+							td=passage.author
+							td=passage.tags
+							td=passage.modify_time
+							td
+								a(target="_blank",href="/view?id="+passage.id) 预览&nbsp;
+								a(target="_blank",href="/admin/edit?id="+passage.id) 修改&nbsp;
+								a(target="_blank",href="/admin/del?id="+passage.id) 删除&nbsp;
+						
 	.container
 		.row
 			.col-md-8.col-md-offset-2.text-right

@@ -15,7 +15,7 @@ var Passage = mysql.define(
 		content:{type : Sequelize.STRING},
 		tags:{type : Sequelize.STRING},
 		original:{type : Sequelize.INTEGER},
-		modify_time:{type : Sequelize.DATE,defaultValue : Sequelize.NOW},
+		modify_time:{type : Sequelize.STRING},
 	},
 	{
 		tableName:table,
