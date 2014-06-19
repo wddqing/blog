@@ -3,6 +3,12 @@ extend ../layout/admin
 block content
 	.container
 		.row
+			.col-md-8.col-md-offset-2.text-right
+				a(href="/admin/add") 发布文章
+				span &nbsp;&nbsp;&nbsp;
+				a(href="/") 返回首页
+	.container
+		.row.content
 			.col-md-8.col-md-offset-2
 				table.table.table-striped.table-list
 					tr
@@ -22,7 +28,7 @@ block content
 							td
 								a(target="_blank",href="/view?id="+passage.id) 预览&nbsp;
 								a(target="_blank",href="/admin/edit?id="+passage.id) 修改&nbsp;
-								a(target="_blank",href="/admin/del?id="+passage.id) 删除&nbsp;
+								a(href="/admin/del?id="+passage.id) 删除&nbsp;
 						
 	.container
 		.row

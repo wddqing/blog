@@ -48,7 +48,18 @@ module.exports = {
 			res.render("admin/add",{title:"添加文章"});
 		},
 		"/admin/del":function(req,res,next){
-
+			var id = req.query.id;
+			if(id){
+				var Passage = use('passage');
+				Passage.destroy({
+					id:id
+				}).complete(function(err){
+					if(err) log(err);
+					res.redirect('/admin/');
+				});
+			}else{
+				res.send("no id");
+			}
 		}
 	},
 	"post":{
@@ -81,6 +92,22 @@ module.exports = {
 						});
 						return ;
 					}
+
+					passage.save().success(function(){
+						log("successful add a passage");
+						notice({
+							content:"保存成功",
+							res:res,
+							url:"/admin/"
+						});
+					}).error(function(){
+						log("failed to add a passage");
+						notice({
+							content:"保存失败",
+							res:res,
+							url:"/admin/"
+						});
+					});
 					
 				});
 			}else{
@@ -92,23 +119,24 @@ module.exports = {
 					modify_time:modify_time,
 					original:original
 				});	
+				passage.save().success(function(){
+					log("successful add a passage");
+					notice({
+						content:"保存成功",
+						res:res,
+						url:"/admin/"
+					});
+				}).error(function(){
+					log("failed to add a passage");
+					notice({
+						content:"保存失败",
+						res:res,
+						url:"/admin/"
+					});
+				});
 			}
 			
-			// passage.save().success(function(){
-			// 	log("successful add a passage");
-			// 	notice({
-			// 		content:"保存成功",
-			// 		res:res,
-			// 		url:"/admin/"
-			// 	});
-			// }).error(function(){
-			// 	log("failed to add a passage");
-			// 	notice({
-			// 		content:"保存失败",
-			// 		res:res,
-			// 		url:"/admin/"
-			// 	});
-			// });
+			
 		}
 	}
 };

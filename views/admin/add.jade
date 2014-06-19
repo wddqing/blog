@@ -26,8 +26,9 @@ block content
 						label(for="content") 文章内容
 						textarea.form-control#summernote(name="content")
 					.text-right
-						input.btn.btn-default(type="submit",value="保存")
-
+						
+						a(href='/admin/') 返回文章列表
+						input.btn.btn-default(type="submit",value="保存",style="margin-left:10px")
 	script.
 		$(document).ready(function() {
 			$('#summernote').summernote({
