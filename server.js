@@ -39,6 +39,21 @@ Server.prototype.createHttpServer = function(){
 	
 	app.use(express.static(this.publicPath));
 	app.use(app.router);
+
+	
+	app.use(function (req, res, next) {
+		var err = req.session.error,
+		       msg = req.session.success;
+		delete req.session.error;
+		delete req.session.success;
+		res.locals.message = '';
+		if (err) res.locals.message = '<p class="msg error">' + err + '</p>';
+		if (msg) res.locals.message = '<p class="msg success">' + msg + '</p>';
+		next();
+	});
+
+
+
 	var files = wrench.readdirSyncRecursive(this.routesPath);
 	//读取路由规则
 	files.forEach(function(file){
